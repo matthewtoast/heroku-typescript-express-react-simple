@@ -1,0 +1,45 @@
+{
+  "name": "heroku-typescript-express-react-simple",
+  "scripts": {
+    "watch": "tsc -w",
+    "build": "rm -rf dist/ && tsc && yarn copy && yarn roll",
+    "start": "node dist/server.js",
+    "roll": "browserify dist/public/index.js > dist/public/index.bundle.js",
+    "copy": "copyfiles -u 1 'src/**/*.+(js|json|yaml|handlebars)' dist/",
+    "serve": "cross-env NODE_ENV=production yarn build && yarn start",
+    "lint": "tslint -p tsconfig.json -c tslint.json '+(src)/**/*.+(ts|tsx)' -t stylish",
+    "test": "cross-env NODE_ENV=test ts-node -r tsconfig-paths/register -P tsconfig.json ./node_modules/.bin/tape 'test/**/*.test.ts' | tap-spec"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "morgan": "^1.9.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "@types/express-handlebars": "^0.0.30",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^10.12.24",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "@types/tape": "^4.2.33",
+    "@types/winston": "^2.4.4",
+    "browserify": "^16.2.3",
+    "copyfiles": "^2.1.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.18.10",
+    "stylish": "^1.0.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.2",
+    "ts-node": "^8.0.2",
+    "tsc": "^1.20150623.0",
+    "tsconfig-paths": "^3.8.0",
+    "tslint": "^5.12.1",
+    "tslint-config-airbnb": "^5.11.1",
+    "typescript": "^3.3.3"
+  }
+}
