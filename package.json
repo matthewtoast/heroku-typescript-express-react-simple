@@ -3,10 +3,9 @@
   "scripts": {
     "watch": "tsc -w",
     "build": "rm -rf dist/ && tsc && yarn copy && yarn roll",
-    "start": "node dist/server.js",
     "roll": "browserify dist/public/index.js > dist/public/index.bundle.js",
     "copy": "copyfiles -u 1 'src/**/*.+(js|json|yaml|handlebars)' dist/",
-    "serve": "cross-env NODE_ENV=production yarn build && yarn start",
+    "start": "cross-env NODE_ENV=production yarn build && node dist/server.js",
     "lint": "tslint -p tsconfig.json -c tslint.json '+(src)/**/*.+(ts|tsx)' -t stylish",
     "test": "cross-env NODE_ENV=test ts-node -r tsconfig-paths/register -P tsconfig.json ./node_modules/.bin/tape 'test/**/*.test.ts' | tap-spec"
   },
